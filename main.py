@@ -1,3 +1,4 @@
+tasks = []
 while True:
     print("\n我的待办")
     print("1.添加任务")
@@ -11,7 +12,18 @@ while True:
     if choice == "0":
         print("程序已退出")
         break
-    elif choice in ["1", "2", "3", "4"]:
-        print("这个功能下一步实现。")
+    elif choice == "1":
+        task = input("请输入任务：")
+        tasks.append(task)
+        print("任务已添加。")
+    elif choice == "2":
+        if not tasks:
+            print("目前没有任务。")
+        else:
+            print("当前任务：")
+            for index, task in enumerate(tasks, start=1):
+                print(f"{index}. {task}")
+    elif choice in ["3", "4"]:
+        print("这个功能下一步实现")
     else: 
         print("无效的选择。")
