@@ -1,4 +1,26 @@
-tasks = []
+TASKS_FILE = "tasks.txt"
+
+
+def load_tasks():
+    tasks = []
+    try:
+        with open(TASKS_FILE, "r", encoding="utf-8") as file:
+            for line in file:
+                task = line.strip()
+                if task:
+                    tasks.append(task)
+    except FileNotFoundError:
+        pass
+    return tasks
+
+
+def save_tasks(tasks):
+    with open(TASKS_FILE, "w", encoding="utf-8") as file:
+        for task in tasks:
+            file.write(task + "\n")
+
+
+tasks = load_tasks()
 while True:
     print("\n我的待办")
     print("1.添加任务")
@@ -15,6 +37,7 @@ while True:
     elif choice == "1":
         task = input("请输入任务：")
         tasks.append(task)
+        save_tasks(tasks)
         print("任务已添加。")
     elif choice == "2":
         if not tasks:
